@@ -9,11 +9,11 @@ const url = 'https://jscourseback-production.up.railway.app'
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    if(JSON.parse(localStorage.getItem('usData'))===null){
+    if (JSON.parse(localStorage.getItem('usData')) === null) {
         getData()
-    }else{
-    renderTable()
-}
+    } else {
+        renderTable()
+    }
 })
 
 async function getData() {
@@ -42,21 +42,21 @@ async function del(id) {
     getData();
 }
 
-async function changeData(id,obj){
-      await fetch(`${url}/api/clients/${id}`, {
+async function changeData(id, obj) {
+    await fetch(`${url}/api/clients/${id}`, {
         method: 'PATCH',
         body: JSON.stringify(obj),
         headers: {
             'Content-Type': 'application/json'
         }
     });
-getData();
+    getData();
 }
 
 function deletClient(delBtn) {
     let modalDelet = document.querySelector('.crm-delete-modal');
     clientItem = document.querySelectorAll('.main-table-row');
-    delBtn.addEventListener('click', function(e){
+    delBtn.addEventListener('click', function (e) {
         let id = this.dataset.idNumDel;
         $modalWindow.style.display = 'block';
         modalDelet.style.display = 'flex';
@@ -64,7 +64,7 @@ function deletClient(delBtn) {
         let delModBtn = document.getElementById('delete-modal-btn');
         delModBtn.addEventListener('click', () => {
             del(id);
-            id=null;
+            id = null;
             $modalWindow.style.display = 'none';
             modalDelet.style.display = 'none';
         })
@@ -131,17 +131,17 @@ $sortItems[3].addEventListener('click', (e) => {
     let dataArray = JSON.parse(localStorage.getItem('usData'));
     if (count == true) {
         console.log(dataArray)
-        dataArray.sort(function(a, b){
-        return (a.updatedAt.slice(0, 10)+a.updatedAt.slice(11, 16)).localeCompare(b.updatedAt.slice(0, 10)+b.updatedAt.slice(11, 16))
-    })
+        dataArray.sort(function (a, b) {
+            return (a.updatedAt.slice(0, 10) + a.updatedAt.slice(11, 16)).localeCompare(b.updatedAt.slice(0, 10) + b.updatedAt.slice(11, 16))
+        })
         localStorage.setItem('usData', JSON.stringify(dataArray))
         renderTable();
         $sortItemSvg[3].style.transform = 'rotate(180deg)'
         count = false;
     } else {
-        dataArray.sort(function(a, b){
-         return (b.updatedAt.slice(0, 10)+b.updatedAt.slice(11, 16)).localeCompare(a.updatedAt.slice(0, 10)+a.updatedAt.slice(11, 16))  
-    });
+        dataArray.sort(function (a, b) {
+            return (b.updatedAt.slice(0, 10) + b.updatedAt.slice(11, 16)).localeCompare(a.updatedAt.slice(0, 10) + a.updatedAt.slice(11, 16))
+        });
         localStorage.setItem('usData', JSON.stringify(dataArray))
         renderTable();
         $sortItemSvg[3].style.transform = 'rotate(360deg)';
@@ -185,7 +185,7 @@ function search() {
 //поиск-----
 
 
-async function getPersonalData(id){
+async function getPersonalData(id) {
     let res = await fetch(`${url}/api/clients/${id}`)
     let clientData = await res.json()
     modalRender(clientData)
