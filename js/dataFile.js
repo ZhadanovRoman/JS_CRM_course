@@ -5,7 +5,7 @@ const $headerInput = document.querySelector('.header-search-input');
 let count = true;
 
 
-
+const url = 'https://jscourseback-production.up.railway.app'
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 async function getData() {
-    const res = await fetch('http://localhost:3000/api/clients');
+    const res = await fetch(`${url}/api/clients`);
     const data = await res.json();
     localStorage.setItem('usData', JSON.stringify(data));
     renderTable();
@@ -25,7 +25,7 @@ async function getData() {
 
 async function postData(obj) {
     console.log(obj)
-    await fetch('http://localhost:3000/api/clients', {
+    await fetch(`${url}/api/clients`, {
         method: 'POST',
         body: JSON.stringify(obj),
         headers: {
@@ -36,14 +36,14 @@ async function postData(obj) {
 }
 
 async function del(id) {
-    await fetch('http://localhost:3000/api/clients/'+id, {
+    await fetch(`${url}/api/clients/${id}`, {
         method: 'DELETE'
     })
     getData();
 }
 
 async function changeData(id,obj){
-      await fetch('http://localhost:3000/api/clients/'+id, {
+      await fetch(`${url}/api/clients/${id}`, {
         method: 'PATCH',
         body: JSON.stringify(obj),
         headers: {
@@ -186,7 +186,7 @@ function search() {
 
 
 async function getPersonalData(id){
-    let res = await fetch('http://localhost:3000/api/clients/'+id)
+    let res = await fetch(`${url}/api/clients/${id}`)
     let clientData = await res.json()
     modalRender(clientData)
 }
