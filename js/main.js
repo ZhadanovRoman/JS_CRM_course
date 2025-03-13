@@ -200,7 +200,7 @@ function renderTable(arr) {
             delImg.src = 'img/deletICON.svg';
 
 
-            ID.textContent = objData.id.slice(0, 6);
+            ID.textContent = objData.id.slice(6, 6);
             FIO.textContent = objData.surname + ' ' + objData.name + ' ' + objData.lastName;
 
             let dateCreateFormat = objData.createdAt.slice(0, 10),
