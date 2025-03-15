@@ -5,7 +5,7 @@ const $headerInput = document.querySelector('.header-search-input');
 let count = true;
 
 
-const url = 'https://js-course-back-9mtnmdcbx-romans-projects-9fe0812d.vercel.app'
+const url = 'https://jscourseback-production.up.railway.app'
 
 
 document.addEventListener('DOMContentLoaded', () => {
